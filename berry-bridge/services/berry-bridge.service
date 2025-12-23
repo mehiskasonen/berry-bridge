@@ -1,0 +1,14 @@
+[Unit]
+Description=Bluetooth RFCOMM login on rfcomm0
+After=bluetooth.target
+Before=bluetooth.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/rfcomm watch hci0 1 /usr/local/sbin/rfcomm-shell.shell
+Restart=on-failure
+RestartSec=5
+Nice=15
+
+[Install]
+WantedBy=multi-user.target
